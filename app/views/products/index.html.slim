@@ -1,0 +1,42 @@
+h1 Index
+
+= form_tag products_path, class: "form-inline", method: :get do
+  = text_field_tag :query, params[:query], class: "form-control", name: "query"
+  = submit_tag "Search", class: "btn btn-primary"
+  - if params[:query].present?
+    = link_to "clear", products_path
+
+/ input#query name="query" type="text" /
+
+/ = simple_form_for :product, url: products_search_path, method: :post do |form|
+/   = form.input :search, label: 'Fecha de elaboracion: '
+br
+br
+br
+
+table
+  thead
+    tr
+      th name
+      th link
+  tbody
+    - @products.each do |product|
+      tr
+        td = product.name
+        td = link_to('Detalle', product_path(product.id))
+
+
+script src="jquery.js"
+script src="typeahead.bundle.js"
+javascript:
+  | var products = new Bloodhound({
+    | datumTokenizer: Bloodhound.tokenizers.whitespace,
+    | queryTokenizer: Bloodhound.tokenizers.whitespace,
+    | remote: {
+      | url: '/products/autocomplete?query=%QUERY',
+      | wildcard: '%QUERY'
+    | }
+  | });
+  | $('#query').typeahead(null, {
+    | source: products
+  | });

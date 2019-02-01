@@ -10,5 +10,7 @@
 #
 
 class Product < ApplicationRecord
+  searchkick word_start: [:name]
 
+  monetize :price_cents
 end
