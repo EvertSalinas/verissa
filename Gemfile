@@ -38,6 +38,10 @@ gem "slim-rails"
 gem 'devise'
 gem 'searchkick'
 gem 'simple_form'
+gem 'spreadsheet'
+gem "roo", "~> 2.7.0"
+gem 'webpacker'
+gem 'foreman'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

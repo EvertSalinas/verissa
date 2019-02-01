@@ -7,6 +7,7 @@
 #  description    :text
 #  price_cents    :integer          default(0), not null
 #  price_currency :string           default("USD"), not null
+#  specifications :string           default([]), is an Array
 #
 
 class Product < ApplicationRecord

@@ -1,4 +1,23 @@
+= link_to "Back", products_path
+
 h1 = @product.name
 p  = humanized_money_with_symbol @product.price
 p  = @product.description
 p  = @product.name
+
+ui
+  - @product.specifications.each do |spec|
+    li = spec
+
+br
+input#discount name="discount" type="text" % de Descuento
+button onclick="myFunction('#{@product.price}')" name="button" type="button" Calcular
+p#nuevo_precio NUEVOPRECIO
+
+javascript:
+  function myFunction(precio) {
+    var descuento = document.getElementById("discount").value;
+    var nuevo_precio = precio - (precio*descuento/100)
+    document.getElementById("nuevo_precio").innerHTML = `Precio con ${descuento}% de descuento: ` + nuevo_precio
+    console.log(url)
+  }

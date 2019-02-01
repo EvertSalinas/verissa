@@ -18,11 +18,14 @@ table
   thead
     tr
       th name
+      th price
       th link
   tbody
     - @products.each do |product|
       tr
         td = product.name
+        td = humanized_money_with_symbol product.price
+        / td = product.category
         td = link_to('Detalle', product_path(product.id))
 
 
